@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Emoji-style orange diamond (rotated square) background -->
+  <rect x="8" y="8" width="48" height="48" rx="8" fill="#ffb300" transform="rotate(45 32 32)"/>
+  <!-- Hebrew letter Tav (ת) -->
+  <text x="32" y="50" text-anchor="middle" font-size="64" font-family="'Noto Sans Hebrew', 'Arial Black', 'Arial', sans-serif" fill="#fff" font-weight="900" style="filter: drop-shadow(0 2px 2px #d17c00);">ת</text>
+</svg>
