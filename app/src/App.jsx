@@ -87,6 +87,18 @@ function darkenColor(hex, amount = 40) {
   return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
 }
 
+// Utility to lighten a hex color
+function lightenColor(hex, amount = 0.5) {
+  hex = hex.replace('#', '');
+  let r = parseInt(hex.substring(0,2), 16);
+  let g = parseInt(hex.substring(2,4), 16);
+  let b = parseInt(hex.substring(4,6), 16);
+  r = Math.round(r + (255 - r) * amount);
+  g = Math.round(g + (255 - g) * amount);
+  b = Math.round(b + (255 - b) * amount);
+  return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+}
+
 function App() {
   const [words, setWords] = useState([]);
   const [maqafGroups, setMaqafGroups] = useState([]);
@@ -163,8 +175,8 @@ function App() {
             background: '#fff',
             borderRadius: 4,
             padding: '2px 5px',
-            boxShadow: (activeGroups.includes(idx) || hoveredGroup === idx) ? `0 0 0 1px ${highlightColors[idx % highlightColors.length]}` : 'none',
-            border: hoveredGroup === idx ? `1.25px solid ${darkenColor(highlightColors[idx % highlightColors.length], 60)}` : activeGroups.includes(idx) ? `1px solid ${highlightColors[idx % highlightColors.length]}` : '1.0px solid #eee',
+            boxShadow: 'none',
+            border: hoveredGroup === idx ? `1.25px solid ${highlightColors[idx % highlightColors.length]}` : '1.0px solid #ddd', // lighter grey default
             transition: 'box-shadow 0.2s, border 0.2s',
             filter: hoveredGroup === idx ? 'brightness(1.1)' : 'none',
           }}
@@ -175,7 +187,7 @@ function App() {
               type="checkbox"
               checked={activeGroups.includes(idx)}
               onChange={() => toggleGroup(idx)}
-              style={{ marginLeft: 3, marginRight: 1 }}
+              style={{ marginLeft: 3, marginRight: 1, accentColor: lightenColor(highlightColors[idx % highlightColors.length], 0.6) }}
               aria-label={`הצג קבוצה ${group.root || idx + 1}`}
             />
             <span style={{ fontWeight: 700 }}>{group.root ? `${group.root}` : `קבוצה ${idx + 1}`}</span>
